@@ -52,4 +52,4 @@ func main() {
 	result := MaskHTTPLinks(text) // вызываем функцию маскировки
 	fmt.Println("Результат:")
 	fmt.Println(result) // выводим результат
-}
+} // Feature branch test
