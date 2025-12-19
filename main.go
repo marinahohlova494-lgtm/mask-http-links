@@ -13,14 +13,14 @@ func MaskHTTPLinks(msg string) string {
 	copy(buf, src)                // копируем исходные байты в буфер
 
 	httpPrefix := []byte("http://") // префикс, который ищем
-	plen := len(httpPrefix)
+	plan := len(httpPrefix)
 
 	i := 0
 	for i < len(buf) {
 		// проверяем, совпадает ли текущая позиция с "http://"
-		if i+plen <= len(buf) {
+		if i+plan <= len(buf) {
 			match := true
-			for j := 0; j < plen; j++ {
+			for j := 0; j < plan; j++ {
 				if buf[i+j] != httpPrefix[j] {
 					match = false
 					break
@@ -29,7 +29,7 @@ func MaskHTTPLinks(msg string) string {
 
 			if match {
 				// нашли "http://", теперь маскируем все символы до пробела или конца строки
-				k := i + plen
+				k := i + plan
 				for k < len(buf) && buf[k] != ' ' {
 					buf[k] = '*'
 					k++
@@ -52,4 +52,4 @@ func main() {
 	result := MaskHTTPLinks(text) // вызываем функцию маскировки
 	fmt.Println("Результат:")
 	fmt.Println(result) // выводим результат
-}
+} // Feature branch test
